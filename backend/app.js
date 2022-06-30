@@ -9,7 +9,7 @@ const authRouter = require('./routes/auth.routes');
 // инициализация приложения
 const app = express();
 
-const PORT = process.env.PORT ?? 3000;
+const PORT = process.env.PORT ?? 4000;
 
 // функция настройки экспресса
 expressConfig(app);
