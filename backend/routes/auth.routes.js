@@ -13,9 +13,6 @@ authRouter.route('/register').post(
       .isLength({
         min: 3,
       }),
-    check('email', 'Некорректный email')
-      .isEmail()
-      .matches(/[a-zA-Z0-9._%-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,4}/i),
     check('password', 'Пароль должен быть минимум 8 символов').isLength({
       min: 8,
     }),
@@ -28,7 +25,7 @@ authRouter.route('/register').post(
       res.json({ success: false, message });
       return;
     }
-    const { login, email, password } = req.body;
+    const { login, password } = req.body;
 
     const existingUser = await User.findOne({ where: { email } });
     // проверяем есть ли уже такой пользователь в БД
