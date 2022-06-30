@@ -7,9 +7,9 @@ authRouter.route('/register').post(
   [
     check(
       'login',
-      'Логин должен быть введен и состоять из латинских символов, цифр или символов ".", "_" или "-"',
+      'Логин должен быть введен и состоять из латинских символов',
     )
-      .matches(/[a-zA-Z0-9._-]+/i)
+      .matches(/[a-zA-Z]+/i)
       .isLength({
         min: 3,
       }),
@@ -17,6 +17,7 @@ authRouter.route('/register').post(
       min: 8,
     }),
   ],
+  
   async (req, res) => {
     const { errors } = validationResult(req);
     console.log(errors);
@@ -27,7 +28,7 @@ authRouter.route('/register').post(
     }
     const { login, password } = req.body;
 
-    const existingUser = await User.findOne({ where: { email } });
+    const existingUser = await User.findOne({ where: { login } });
     // проверяем есть ли уже такой пользователь в БД
     if (existingUser) {
       res.json({ success: false, message: 'Пользователь с такой почтой уже есть' });
@@ -37,7 +38,6 @@ authRouter.route('/register').post(
     // создаём нового пользователя
     const user = await User.create({
       login,
-      email,
       // хэшируем пароль, чтобы не хранить в открытом виде в БД
       password: await bcrypt.hash(password, 10),
     });
@@ -49,8 +49,8 @@ authRouter.route('/register').post(
 );
 
 authRouter.route('/login').post(async (req, res) => {
-  const { email, password } = req.body;
-  const existingUser = await User.findOne({ where: { email } });
+  const { login, password } = req.body;
+  const existingUser = await User.findOne({ where: { login } });
 
   // проверяем, что такой пользователь есть в БД и пароли совпадают
   if (existingUser && (await bcrypt.compare(password, existingUser.password))) {
@@ -67,7 +67,8 @@ authRouter.get('/logout', (req, res) => {
   req.session.destroy();
   res.clearCookie('user_sid');
   delete res.locals.user;
-  res.redirect('/');
+  // res.redirect('/');
+  res.send({ success: true });
 });
 
 module.exports = authRouter;
