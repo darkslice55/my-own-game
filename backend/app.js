@@ -12,7 +12,7 @@ const questionRouter = require('./routes/question.router');
 // инициализация приложения
 const app = express();
 
-const PORT = process.env.PORT ?? 3000;
+const PORT = process.env.PORT ?? 4000;
 
 // функция настройки экспресса
 expressConfig(app);
