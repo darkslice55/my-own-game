@@ -32,17 +32,15 @@
   color: #61dafb;
 } */
 
-h1{
+h1 {
   color: white;
   font-family: 'Raleway' sans-serif;
 }
 
 .gameBoard {
-  border-style: 
-  border #fae8e8;
+  border-style: border #fae8e8;
   background-color: rgba(125, 25, 0, 0.532);
   border-radius: 20px;
-  
 }
 /* 
 .firstString {
@@ -66,26 +64,23 @@ h1{
   justify-content: space-between;
 } */
 
-
 .btn {
- -webkit-box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000, 5px -9px 0px -3px rgba(184,20,20,0) !important; 
- box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000, 5px -9px 0px -3px rgba(184,20,20,0) !important;
- background-color: #8e1100 !important;
- border-radius: 10px;
+  -webkit-box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000,
+    5px -9px 0px -3px rgba(184, 20, 20, 0) !important;
+  box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000,
+    5px -9px 0px -3px rgba(184, 20, 20, 0) !important;
+  background-color: #8e1100 !important;
+  border-radius: 10px;
 }
-.btn:hover, .btn-large:hover, .btn-small:hover {
+.btn:hover,
+.btn-large:hover,
+.btn-small:hover {
   background-color: #ea0010 !important;
 }
 
-
-
-
- 
-
-
-h4{
+h4 {
   font-family: 'Raleway' sans-serif;
-  color: white
+  color: white;
 }
 
 @keyframes App-logo-spin {
@@ -104,7 +99,6 @@ h4{
   display: flex;
   
 } */
-
 
 .buttonMain {
   margin-top: 80px;
@@ -127,11 +121,10 @@ h4{
   position: relative;
   padding: 10px;
   font-family: 'Raleway' sans-serif;
-
-  }
+}
 
 .buttonMain::before {
-content: '';
+  content: '';
   border-radius: 1000px;
   min-width: calc(300px + 12px);
   min-height: calc(60px + 12px);
@@ -142,21 +135,24 @@ content: '';
   left: 50%;
   transform: translate(-50%, -50%);
   opacity: 0;
-  transition: all .3s ease-in-out 0s;
+  transition: all 0.3s ease-in-out 0s;
 }
 
-.buttonMain:hover, .button:focus {
+.buttonMain:hover,
+.button:focus {
   color: #e80000;
   transform: translateY(-6px);
 }
 
-.buttonMain:hover::before, button:focus::before {
+.buttonMain:hover::before,
+button:focus::before {
   opacity: 1;
 }
 
 .buttonMain::after {
   content: '';
-  width: 30px; height: 30px;
+  width: 30px;
+  height: 30px;
   border-radius: 100%;
   border: 6px solid #ff0303;
   position: absolute;
@@ -167,7 +163,8 @@ content: '';
   animation: ring 1.5s infinite;
 }
 
-.buttonMain:hover::after, button:focus::after {
+.buttonMain:hover::after,
+button:focus::after {
   animation: none;
   display: none;
 }
@@ -195,14 +192,12 @@ content: '';
 }
 li {
   font-family: 'Raleway' sans-serif;
-
 }
 
-h2{
+h2 {
   font-family: 'Raleway' sans-serif;
 }
 
 button {
   font-family: 'Raleway' sans-serif;
-
 }
