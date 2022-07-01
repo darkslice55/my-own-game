@@ -16,6 +16,19 @@ function Profile() {
     }, []);
 
 function Profile() {
+  // const user = useSelector((state) => state.auth);
+    const [statistic, setStatistic] = useState();
+    // console.log(user, 'Информация о Юрезе...........................')
+  
+    useEffect(() => {
+      fetch('/users')
+        .then((result) => result.json())
+        .then((stat) => {
+          console.log(stat, 'Cтатистика...........................')
+          setStatistic(stat)
+        });
+    }, []);
+
     return (
         <div>
             <h1>Личный кабинет, где тебя никто не найдет.</h1>

@@ -5,6 +5,7 @@ const { Game, Question, GameQuestion } = require('../db/models'); //Подклю
 // выдает вопрос без ответа
 ////////////
 questionRouter.get('/', async (req, res) => {
+ 
   try {
     const questions = await Question.findAll({
       raw: true,

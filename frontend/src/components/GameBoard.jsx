@@ -48,6 +48,11 @@ function GameBoard(props) {
     setTotalScore((prev) => prev + score);
   }, []);
 
+
+  const gameOver = () => {
+    fetch("/games");
+   }
+
   console.log(questions);
 
   return (
@@ -55,7 +60,7 @@ function GameBoard(props) {
       {topics && (
         <>
           <div className='game-header'>
-            <button type="submit" className="btnEnd btn-primary style ={{'width:100px', hight:'100px', marginRight:50px}}">Завершить игру</button>
+            <button type="submit" onClick={gameOver} className="btnEnd btn-primary style ={{'width:100px', hight:'100px', marginRight:50px}}">Завершить игру</button>
             <h2 className={style.score}>Текущий счёт: {totalScore}</h2>
           </div>
           {topics.map((topic, id) => (
