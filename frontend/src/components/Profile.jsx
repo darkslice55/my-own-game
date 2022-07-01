@@ -15,10 +15,10 @@ function Profile() {
         });
     }, []);
 
+function Profile() {
     return (
         <div>
-            <p></p>
-            <p></p>
+            <h1>Личный кабинет, где тебя никто не найдет.</h1>
         </div>
     );
 }

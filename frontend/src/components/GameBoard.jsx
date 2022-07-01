@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { QUESTIONS_GET } from '../store/questions/actionsTypes';
@@ -35,9 +35,13 @@ function GameBoard(props) {
         setTopics(newTopics);
         dispatch({ type: QUESTIONS_GET, payload: questions });
       });
-  }, [dispatch]);
+  }, []);
 
-  //   const handleClick =
+  const answeredQuestion = useCallback((score) => {
+    setTotalScore((prev) => prev + score);
+  }, []);
+
+  console.log(questions);
 
   return (
     <div>
@@ -48,7 +52,11 @@ function GameBoard(props) {
             <div className={style.parent} key={id}>
               <p className={style.theme}>{topic.theme}</p>
               {topic.questions.map((question) => (
-                <QuestionCard key={question.id} question={question} />
+                <QuestionCard
+                  key={question.id}
+                  question={question}
+                  answeredQuestion={answeredQuestion}
+                />
               ))}
             </div>
           ))}

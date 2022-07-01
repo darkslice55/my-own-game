@@ -9,13 +9,15 @@ export default function questionsReducer(state = initialState, action) {
   switch (action.type) {
     case QUESTIONS_ANSWER: {
       //переписать
-      const question = {
-        id: uuid(),
-        title: action.payload,
-        done: false,
-      };
+      const newState = state.questions.map((question) => {
+        if (question.id === action.payload.id) {
+          question.isAnswered = true;
+          return question;
+        }
+        return question;
+      });
 
-      return { ...state, questions: [...state.questions, question] };
+      return { ...state, questions: newState };
     }
 
     case QUESTIONS_GET: {

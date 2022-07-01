@@ -1,22 +1,38 @@
 import React from 'react';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useCallback } from 'react';
+import { useDispatch } from 'react-redux';
 import style from './QuestionCard.module.css';
+import { QUESTIONS_ANSWER } from '../store/questions/actionsTypes';
 
-function QuestionCard({ question }) {
-  //   const dispatch = useDispatch();
+function QuestionCard({ question, answeredQuestion }) {
+  const dispatch = useDispatch();
   const [isModal, setModal] = useState(false);
   const [isAnswered, setAnswered] = useState(false);
   const [rightAnswer, setRightAnswer] = useState('');
   const [value, setValue] = React.useState('');
+  const [timer, setTimer] = React.useState(60);
+  const [started, setStarted] = React.useState(false);
+
+  React.useEffect(() => {
+    if (started) {
+      const interval = setInterval(() => setTimer((curTime) => curTime - 1), 1000);
+      return () => clearInterval(interval);
+    }
+    return undefined;
+  }, [started]);
+
+  const onOpenModal = useCallback(() => {
+    setModal(true);
+    setStarted(true);
+  }, []);
 
   const handleClick = useCallback(() => {
-    console.log('value', value);
     setAnswered(true);
-    console.log('value', value);
+    setStarted(false);
     fetch(`/questions/${question.id}`, {
       method: 'PUT',
       body: JSON.stringify({
-        timer: 100,
+        timer,
         answer: value,
       }),
       headers: {
@@ -27,33 +43,45 @@ function QuestionCard({ question }) {
       .then((answer) => {
         console.log(answer);
         setRightAnswer(answer);
+        dispatch({ type: QUESTIONS_ANSWER, payload: { id: question.id } });
       });
   }, [value, rightAnswer]);
+
+  const handleClickOnAnswer = useCallback(() => {
+    setModal(false);
+    const score = rightAnswer.result ? Number(question.score) : -Number(question.score);
+    answeredQuestion(score);
+  }, [rightAnswer, answeredQuestion]);
 
   return (
     <>
       <p
         className={isAnswered ? style.answered : style.question}
-        onClick={!isAnswered && (() => setModal(true))}>
+        onClick={!isAnswered ? onOpenModal : undefined}>
         {question.score}
       </p>
       {isModal && (
         <div className={style.modal}>
           <div className={style.modalDialog}>
-            <h2 className={style.modalHeader}>Вопрос за {question.score}</h2>
+            <h2 className={style.modalHeader}>
+              Вопрос за {question.score}
+              <span className={style.modalTimer}>{timer}</span>
+            </h2>
             <p>{question.description}</p>
             {!isAnswered ? (
               <>
                 <input
                   type="text"
-                  placeholder="Введите задачу"
+                  placeholder="Введите ответ"
                   style={{ width: 400 }}
                   id="input"
                   name="input"
                   value={value}
                   onChange={(event) => setValue(event.target.value)}
                 />
-                <button onClick={handleClick}>Ответить</button>
+                <button className="btn" onClick={handleClick}>
+                  Ответить
+                </button>
               </>
             ) : (
               <>
@@ -65,7 +93,7 @@ function QuestionCard({ question }) {
                     <p>Правильный ответ: {rightAnswer.answer}</p>
                   </>
                 )}
-                <button onClick={() => setModal(false)}>Продолжить</button>
+                <button onClick={handleClickOnAnswer}>Продолжить</button>
               </>
             )}
           </div>
