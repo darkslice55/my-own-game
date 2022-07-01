@@ -6,7 +6,6 @@ const { Question, GameQuestion } = require('../db/models'); //Подключае
 ////////////
 questionRouter.get('/', async (req, res) => {
   try {
-    const id = req.body.id;
     const questions = await Question.findAll({
       raw: true,
       include: [Question.Theme],
@@ -41,7 +40,7 @@ questionRouter.put('/:id', async (req, res) => {
     const question = await Question.findOne({ where: { id: idQuestion } });
     if (anwer === question.answer) {
       const gameQuestion = await GameQuestion.create({
-        game_id,
+        game_id: Number(game_id), 
         question_id: idQuestion,
         isRight: true,
         time: Number(timer),
@@ -50,7 +49,7 @@ questionRouter.put('/:id', async (req, res) => {
       res.json({ anwer: question.answer, result: gameQuestion.isRight });
     } else {
       const gameQuestion = await GameQuestion.create({
-        game_id,
+        game_id: Number(game_id), 
         question_id: idQuestion,
         isRight: false,
         time: Number(timer),

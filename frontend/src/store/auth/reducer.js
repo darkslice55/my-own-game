@@ -1,9 +1,6 @@
 import { AUTH_LOGIN } from './actionsTypes';
 
-const initialState = {
-  // name: '',
-  // id: 1,
-};
+const initialState = {};
 
 export default function authReducer(state = initialState, action) {
   switch (action.type) {

@@ -25,9 +25,10 @@
   color: white;
 }
 
-.App-link {
+/* .App-link {
   color: #61dafb;
-}
+} */
+
 h1{
   color: white;
 }
@@ -39,7 +40,7 @@ h1{
   border-radius: 20px;
   
 }
-
+/* 
 .firstString {
   display: flex;
   align-items: flex-start;
@@ -59,9 +60,17 @@ h1{
   align-items: flex-start;
   border: 2px #fae8e8;
   justify-content: space-between;
+} */
+
+.btn {
+ -webkit-box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000, 5px -9px 0px -3px rgba(184,20,20,0) !important; 
+ box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000, 5px -9px 0px -3px rgba(184,20,20,0) !important;
+ background-color: #8e1100;
+ border-radius: 10px;
 }
-
-
+.btn:hover, .btn-large:hover, .btn-small:hover {
+  background-color: #ea0010;
+}
 
 h4{
   color: white
