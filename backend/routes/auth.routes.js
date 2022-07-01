@@ -5,10 +5,7 @@ const { User } = require('../db/models');
 
 authRouter.route('/register').post(
   [
-    check(
-      'login',
-      'Логин должен быть введен и состоять из латинских символов',
-    )
+    check('login', 'Логин должен быть введен и состоять из латинских символов')
       .matches(/[a-zA-Z]+/i)
       .isLength({
         min: 3,
@@ -17,7 +14,7 @@ authRouter.route('/register').post(
       min: 8,
     }),
   ],
-  
+
   async (req, res) => {
     const { errors } = validationResult(req);
     console.log(errors);
@@ -42,7 +39,7 @@ authRouter.route('/register').post(
       password: await bcrypt.hash(password, 10),
     });
     // кладём id нового пользователя в хранилище сессии (сразу логиним пользователя)
-    res.send({ id:user.id,  login: user.login});
+    res.json({ id: user.id, login: user.login });
   },
 );
 
@@ -55,7 +52,7 @@ authRouter.route('/login').post(async (req, res) => {
     // кладём id нового пользователя в хранилище сессии (логиним пользователя)
     req.session.userId = existingUser.id;
     // res.locals.user = existingUser;
-    res.send({ id:existingUser.id,  login: existingUser.login });
+    res.send({ id: existingUser.id, login: existingUser.login });
   } else {
     res.json({ success: false, message: 'Такого пользователя нет либо пароли не совпадают' });
   }

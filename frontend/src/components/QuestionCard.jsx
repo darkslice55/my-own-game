@@ -11,7 +11,7 @@ function QuestionCard({ question, answeredQuestion }) {
   const [rightAnswer, setRightAnswer] = useState('');
   const [value, setValue] = React.useState('');
   const [timer, setTimer] = React.useState(60);
-  const [started, setStarted] = React.useState(true);
+  const [started, setStarted] = React.useState(false);
 
   React.useEffect(() => {
     if (started) {
@@ -21,7 +21,10 @@ function QuestionCard({ question, answeredQuestion }) {
     return undefined;
   }, [started]);
 
-  setTimer(60);
+  const onOpenModal = useCallback(() => {
+    setModal(true);
+    setStarted(true);
+  }, []);
 
   const handleClick = useCallback(() => {
     setAnswered(true);
@@ -38,6 +41,7 @@ function QuestionCard({ question, answeredQuestion }) {
     })
       .then((result) => result.json())
       .then((answer) => {
+        console.log(answer);
         setRightAnswer(answer);
         dispatch({ type: QUESTIONS_ANSWER, payload: { id: question.id } });
       });
@@ -53,14 +57,15 @@ function QuestionCard({ question, answeredQuestion }) {
     <>
       <p
         className={isAnswered ? style.answered : style.question}
-        onClick={!isAnswered ? () => setModal(true) : undefined}>
+        onClick={!isAnswered ? onOpenModal : undefined}>
         {question.score}
       </p>
       {isModal && (
         <div className={style.modal}>
           <div className={style.modalDialog}>
-            <h2 className={style.modalHeader}>Вопрос за {question.score}
-            <span className={style.modalTimer}>{timer}</span>
+            <h2 className={style.modalHeader}>
+              Вопрос за {question.score}
+              <span className={style.modalTimer}>{timer}</span>
             </h2>
             <p>{question.description}</p>
             {!isAnswered ? (
@@ -74,7 +79,9 @@ function QuestionCard({ question, answeredQuestion }) {
                   value={value}
                   onChange={(event) => setValue(event.target.value)}
                 />
-                <button className='btn' onClick={handleClick}>Ответить</button>
+                <button className="btn" onClick={handleClick}>
+                  Ответить
+                </button>
               </>
             ) : (
               <>
