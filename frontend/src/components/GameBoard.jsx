@@ -25,6 +25,7 @@ function GameBoard(props) {
   const questions = useSelector((state) => state.questions.questions);
   const dispatch = useDispatch();
   const [topics, setTopics] = useState([]);
+  const [totalScore, setTotalScore] = useState(0);
 
   useEffect(() => {
     fetch('/questions')
@@ -40,15 +41,19 @@ function GameBoard(props) {
 
   return (
     <div>
-      {topics &&
-        topics.map((topic, id) => (
-          <div className={style.parent} key={id}>
-            <p className={style.theme}>{topic.theme}</p>
-            {topic.questions.map((question) => (
-              <QuestionCard key={question.id} question={question} />
-            ))}
-          </div>
-        ))}
+      {topics && (
+        <>
+          <h2 className={style.score}>Текущий счёт: {totalScore}</h2>
+          {topics.map((topic, id) => (
+            <div className={style.parent} key={id}>
+              <p className={style.theme}>{topic.theme}</p>
+              {topic.questions.map((question) => (
+                <QuestionCard key={question.id} question={question} />
+              ))}
+            </div>
+          ))}
+        </>
+      )}
     </div>
   );
 }
