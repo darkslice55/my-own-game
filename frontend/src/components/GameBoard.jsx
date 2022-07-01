@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { QUESTIONS_GET } from '../store/questions/actionsTypes';
 import style from './GameBoard.module.css';
+import QuestionCard from './QuestionCard';
 
 function getThemes(questions) {
   const themes = {};
@@ -44,9 +45,7 @@ function GameBoard(props) {
           <div className={style.parent} key={id}>
             <p className={style.theme}>{topic.theme}</p>
             {topic.questions.map((question) => (
-              <p key={question.id} className={style.question}>
-                {question.score}
-              </p>
+              <QuestionCard key={question.id} question={question} />
             ))}
           </div>
         ))}
