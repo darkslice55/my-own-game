@@ -17,5 +17,54 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.score {
+  color: white;
+  font-size: 50px;
+}
+
+.statistika-mini-3 {
+  display: flex;
+  float: left;
+  width: 100%;
+  margin: 15px 0px 15px 0px;
+  text-align: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+
+  }
+  .statistika-mini-3 div {
+  float:left;
+  width:33%;
+  margin-bottom: 3px;
+  border-right: 1px solid #cccccc;
+  }
+  .statistika-mini-3 div b {
+  float:left;
+  width:100%;
+  margin-top: 3px;
+  }
+  .statistika-mini-3 #sm-3 {
+  border-right:none;
+  }
+
+  .game-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
 
+  .btnEnd{
+    margin-right: auto;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 20px;
+    display: flex;
+    width: 213px;
+    height: 80px;
+    color: #8e1100;
+    border: 1px solid #8e1100;
+    font-weight: bold;
+    border-radius: 20px;
+    padding: 25px 22px;
+  }
