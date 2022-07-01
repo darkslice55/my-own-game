@@ -79,7 +79,9 @@ function QuestionCard({ question, answeredQuestion }) {
                   value={value}
                   onChange={(event) => setValue(event.target.value)}
                 />
-                <button onClick={handleClick}>Ответить</button>
+                <button className="btn" onClick={handleClick}>
+                  Ответить
+                </button>
               </>
             ) : (
               <>
