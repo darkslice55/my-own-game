@@ -1,6 +1,6 @@
 const questionRouter = require('express').Router();
 
-const { Question } = require('../db/models'); //Подключаемся к базе и получает юзеров
+const { Question, GameQuestion } = require('../db/models'); //Подключаемся к базе и получает юзеров
 
 // выдает вопрос без ответа
 ////////////
@@ -28,22 +28,45 @@ questionRouter.get('/', async (req, res) => {
   }
 });
 ///// Проверяет правильность ответа
-// questionRouter.put('/question:id', (req, res) => {
-//   try {
-//     const game_id = req.session.gameId;
-//     const question_id = req.body.id;
-//     const user_id = req.session.userId;
-//     console.log(req.body);
-//   /// Запрашивает вопрос в бд
-//   /// Сравнивает ответ
-//   /// Записывает результат в GameQuestion
-//   /// Отправляет Правельный ответ и результат True или False
-//     // res.status(200)
-//     // res.json('ok')
-//   } catch (error) {
-//     console.log(error);
-//     res.status(418).end()
-//   }
+questionRouter.put('/:id', async(req, res) => {
+  try {
+    const game_id = req.session.gameId;
+    const idQuestion = req.params.id;
+    const user_id = req.session.userId;
+    const timer = req.body.timer
+    const anwer = req.body.answer;
+    const question = await Question.findOne({ where: {id: idQuestion}})
+    if(anwer === question.answer) {
+      const gameQuestion = await GameQuestion.create({
+        game_id,
+        question_id: idQuestion,
+        isRight: true,
+        time: Number(timer)
+      });
+      res.status(200)
+      res.json({anwer: question.answer, result: gameQuestion.isRight})
+    } else {
+      const gameQuestion = await GameQuestion.create({
+        game_id, 
+        question_id: idQuestion,
+        isRight: false,
+        time: Number(timer)
+      });
+      res.status(200)
+      res.json({anwer: question.answer, result: gameQuestion.isRight})
+    }
+  
+    /// Запрашивает вопрос в бд
+  /// Сравнивает ответ
+  /// Записывает результат в GameQuestion
+  /// Отправляет Правельный ответ и результат True или False
+  } catch (error) {
+    console.log(error);
+    res.status(418).end()
+  }
+
+});
+
 
 // });
 
