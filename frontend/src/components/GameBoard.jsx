@@ -33,6 +33,13 @@ function GameBoard(props) {
       .then((questions) => {
         const newTopics = getThemes(questions);
         setTopics(newTopics);
+        setTotalScore(
+          questions.reduce((acc, el) => {
+            const znak = el.isAnswered ? (el.isRight ? 1 : -1) : 0;
+            console.log(znak);
+            return acc + Number(el.score) * znak;
+          }, 0),
+        );
         dispatch({ type: QUESTIONS_GET, payload: questions });
       });
   }, []);
@@ -41,13 +48,21 @@ function GameBoard(props) {
     setTotalScore((prev) => prev + score);
   }, []);
 
+
+  const gameOver = () => {
+    fetch("/games");
+   }
+
   console.log(questions);
 
   return (
     <div>
       {topics && (
         <>
-          <h2 className={style.score}>Текущий счёт: {totalScore}</h2>
+          <div className='game-header'>
+            <button type="submit" onClick={gameOver} className="btnEnd btn-primary style ={{'width:100px', hight:'100px', marginRight:50px}}">Завершить игру</button>
+            <h2 className={style.score}>Текущий счёт: {totalScore}</h2>
+          </div>
           {topics.map((topic, id) => (
             <div className={style.parent} key={id}>
               <p className={style.theme}>{topic.theme}</p>
@@ -60,6 +75,7 @@ function GameBoard(props) {
               ))}
             </div>
           ))}
+
         </>
       )}
     </div>
