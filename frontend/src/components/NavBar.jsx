@@ -16,7 +16,8 @@ function NavBar({user}) {
         </>
       ):(
         <>
-        <li><Link to="/auth/register">Получить допуск к игре</Link></li>
+        <li><Link className='linkRega' to="/auth/register">
+          Получить допуск к игре</Link></li>
         <li><Link to="/auth/login">Войти в игру</Link></li>
         </>
       )}
