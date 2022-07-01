@@ -7,7 +7,7 @@ import { QUESTIONS_ANSWER } from '../store/questions/actionsTypes';
 function QuestionCard({ question, answeredQuestion }) {
   const dispatch = useDispatch();
   const [isModal, setModal] = useState(false);
-  const [isAnswered, setAnswered] = useState(false);
+  const [isAnswered, setAnswered] = useState(question.isAnswered);
   const [rightAnswer, setRightAnswer] = useState('');
   const [value, setValue] = React.useState('');
   const [timer, setTimer] = React.useState(60);
@@ -29,6 +29,7 @@ function QuestionCard({ question, answeredQuestion }) {
   const handleClick = useCallback(() => {
     setAnswered(true);
     setStarted(false);
+    console.log(timer, value);
     fetch(`/questions/${question.id}`, {
       method: 'PUT',
       body: JSON.stringify({

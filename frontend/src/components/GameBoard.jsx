@@ -33,6 +33,13 @@ function GameBoard(props) {
       .then((questions) => {
         const newTopics = getThemes(questions);
         setTopics(newTopics);
+        setTotalScore(
+          questions.reduce((acc, el) => {
+            const znak = el.isAnswered ? (el.isRight ? 1 : -1) : 0;
+            console.log(znak);
+            return acc + Number(el.score) * znak;
+          }, 0),
+        );
         dispatch({ type: QUESTIONS_GET, payload: questions });
       });
   }, []);
