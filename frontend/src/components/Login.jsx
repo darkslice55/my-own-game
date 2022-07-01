@@ -37,13 +37,13 @@ function Login() {
         <form method='POST' className='form' onSubmit={getData}>
           <div className="row">
             <div className="input-field col s3">
-              <input id="first_name2" type="text" name="login" className="validate" />
+              <input id="first_name2" type="text" name="login" className="validate" autocomplete="off"/>
               <label className="active" htmlFor="first_name2">User Name</label>
             </div>
            </div>
          <div className="row">
           <div className="input-field col s3">
-            <input id="password" type="password" name="password" className="validate"/>
+            <input id="password" type="password" name="password" className="validate" autocomplete="off"/>
             <label className="active" htmlFor="password">Password</label>
              <button type="submit" className="btn btn-primary">Подтвердить</button>
           </div>
