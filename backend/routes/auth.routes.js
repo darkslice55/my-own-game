@@ -42,7 +42,7 @@ authRouter.route('/register').post(
       password: await bcrypt.hash(password, 10),
     });
     // кладём id нового пользователя в хранилище сессии (сразу логиним пользователя)
-    res.send({ success: true });
+    res.send({ id:user.id,  login: user.login});
   },
 );
 
@@ -54,8 +54,8 @@ authRouter.route('/login').post(async (req, res) => {
   if (existingUser && (await bcrypt.compare(password, existingUser.password))) {
     // кладём id нового пользователя в хранилище сессии (логиним пользователя)
     req.session.userId = existingUser.id;
-    res.locals.user = existingUser;
-    res.send({ success: true });
+    // res.locals.user = existingUser;
+    res.send({ id:existingUser.id,  login: existingUser.login });
   } else {
     res.json({ success: false, message: 'Такого пользователя нет либо пароли не совпадают' });
   }
