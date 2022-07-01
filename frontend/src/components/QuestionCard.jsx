@@ -95,7 +95,9 @@ function QuestionCard({ question, answeredQuestion }) {
                     <p>Правильный ответ: {rightAnswer.answer}</p>
                   </>
                 )}
-                <button onClick={handleClickOnAnswer}>Продолжить</button>
+                <button className="btn" onClick={handleClickOnAnswer}>
+                  Продолжить
+                </button>
               </>
             )}
           </div>
