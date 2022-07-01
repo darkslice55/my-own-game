@@ -3,6 +3,8 @@ const session = require('express-session');
 const FileStore = require('session-file-store')(session);
 const reactSsrMiddleware = require('../middlewares/reactSsr');
 const addUser = require('../middlewares/addUser');
+const morgan = require('morgan');
+
 
 // Конфигурация сессии
 const sessionConfig = {
@@ -33,6 +35,7 @@ function expressConfig(app) {
   app.use(addUser);
   // наша миддлварка для более компактного кода рендеринга
   app.use(reactSsrMiddleware);
+  app.use(morgan('dev'));
 }
 
 module.exports = expressConfig;

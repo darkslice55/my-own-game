@@ -1,10 +1,10 @@
-import {
-     Routes,
-     Route,
-     } from 'react-router-dom';
 
+
+import { Provider } from 'react-redux';
+import { Routes, Route } from 'react-router-dom';
 
 import './App.css';
+import store from '../../store';
 import Main from '../Main';
 import Register from '../Register';
 import Login from '../Login';
@@ -17,6 +17,8 @@ import GameBoard from '../GameBoard';
 function App({user}) {
     return (
         <div className='App'>
+        
+    <Provider store={store}>
         <NavBar user={user} />
         <div className='container'style={{paddingTop:'100px'}} >
         <Routes>
@@ -28,6 +30,8 @@ function App({user}) {
           <Route path='/game/play' element ={<GameBoard />} />
         </Routes>
         </div>
+        
+    </Provider>
       </div>
     );
 }
