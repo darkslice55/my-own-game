@@ -21,7 +21,7 @@ expressConfig(app);
 app.use('/auth', authRouter);
 app.use('/users', userRouter);
 app.use('/games', gamesRouter);
-app.use('/question', questionRouter);
+app.use('/questions', questionRouter);
 app.get('*', (req, res) => {
   res.send('Страница не найдена');
 });
