@@ -1,16 +1,24 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import NavBar from './NavBar';
 
-function Main() {
+function Main({user}) {
     return (
-        <>
-        <h1 className="mb-1">Игра</h1>
-        <NavBar />
-        &nbsp;&nbsp;&nbsp;
-        <a className="btn btn-primary btn-xl" href="/auth/register">Регистрация</a>&nbsp;&nbsp;&nbsp;
-        <Link className="btn btn-primary btn-xl" to="/login">Войти</Link>
-      </>
+        <div>
+        <h1 className="mb-1" style={{textAlign: 'center', color: '#ffffff'}}>Я хочу сыграть с тобой в одну игру</h1>
+         {!user && (
+            <>
+        <form action="/error">
+         <button type="submit"  className="buttonMain">Жми!</button>   
+         </form>  
+         </>
+         )}
+         {user && ( 
+            <div>
+            <form action="/game/play">
+              <button type="submit"  className="buttonMain">Давай поиграем!</button>   
+            </form>  
+            </div> 
+         )} 
+       </div>
     );
 }
 
