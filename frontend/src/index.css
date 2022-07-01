@@ -65,6 +65,23 @@ code {
     color: #8e1100;
     border: 1px solid #8e1100;
     font-weight: bold;
-    border-radius: 20px;
+    /* border-radius: 20px; */
     padding: 25px 22px;
+    border-radius: 15px;
+    /* padding: 20px 50px; */
+    /* text-align: center; */
+    font-family: 'Raleway' sans-serif;
+    background-color: #8B0A0A;
+    color: #fff;
+    /* display: flex; */
+    cursor: pointer;
+    box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000, 10px -6px 31px -7px rgb(194 194 194 / 26%), 10px -6px 31px -7px rgb(194 194 194 / 26%), 10px -6px 31px -7px rgb(194 194 194 / 26%), 10px -6px 31px -7px rgb(194 194 194 / 26%), 10px -6px 31px -7px rgb(194 194 194 / 26%), 10px -6px 31px -7px rgb(194 194 194 / 26%), 10px 12px 31px -7px rgb(194 194 194 / 26%);
+}
+    
+
+
+
+  .btnEnd:hover {
+    background-color: #fff;
+    color: rgb(131, 18, 10);
   }

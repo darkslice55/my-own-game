@@ -38,7 +38,7 @@
   border-radius: 15px;
   padding: 20px 50px;
   text-align: center;
-  background-color: rgb(131, 10, 10);
+  background-color: rgb(10, 131, 16);
   color: #fff;
   display: flex;
   cursor: pointer;
@@ -49,7 +49,7 @@
 
 .question:hover {
   background-color: #fff;
-  color: rgb(131, 18, 10);
+  color: rgb(10, 131, 16);
 }
 
 .score {
