@@ -43,7 +43,10 @@ function GameBoard(props) {
     <div>
       {topics && (
         <>
-          <h2 className={style.score}>Текущий счёт: {totalScore}</h2>
+          <div className='game-header'>
+            <button type="submit" className="btnEnd btn-primary style ={{'width:100px', hight:'100px', marginRight:50px}}">Завершить игру</button>
+            <h2 className={style.score}>Текущий счёт: {totalScore}</h2>
+          </div>
           {topics.map((topic, id) => (
             <div className={style.parent} key={id}>
               <p className={style.theme}>{topic.theme}</p>
@@ -52,6 +55,7 @@ function GameBoard(props) {
               ))}
             </div>
           ))}
+
         </>
       )}
     </div>
