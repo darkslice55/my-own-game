@@ -23,7 +23,7 @@
   font-weight: 900;
   padding: 20px 50px;
   text-align: center;
-  background-color: rgb(7, 43, 248);
+  background: radial-gradient(circle at 50% 50%, #e80000, #1f005c);
   color: #fff;
   -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
   -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
