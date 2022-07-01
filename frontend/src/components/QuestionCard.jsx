@@ -21,6 +21,8 @@ function QuestionCard({ question, answeredQuestion }) {
     return undefined;
   }, [started]);
 
+  setTimer(60);
+
   const handleClick = useCallback(() => {
     setAnswered(true);
     setStarted(false);
