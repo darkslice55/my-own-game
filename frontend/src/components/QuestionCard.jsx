@@ -79,6 +79,7 @@ function QuestionCard({ question, answeredQuestion }) {
                   name="input"
                   value={value}
                   onChange={(event) => setValue(event.target.value)}
+                  autocomplete="off"
                 />
                 <button className="btn" onClick={handleClick}>
                   Ответить
