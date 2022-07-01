@@ -42,8 +42,6 @@ authRouter.route('/register').post(
       password: await bcrypt.hash(password, 10),
     });
     // кладём id нового пользователя в хранилище сессии (сразу логиним пользователя)
-    req.session.userId = user.id;
-    res.locals.user = user;
     res.send({ success: true });
   },
 );
@@ -67,6 +65,7 @@ authRouter.get('/logout', (req, res) => {
   req.session.destroy();
   res.clearCookie('user_sid');
   delete res.locals.user;
+  delete res.locals.gameId;
   // res.redirect('/');
   res.send({ success: true });
 });
