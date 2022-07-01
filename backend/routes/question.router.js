@@ -27,45 +27,46 @@ questionRouter.get('/', async (req, res) => {
   }
 });
 ///// Проверяет правильность ответа
-questionRouter.put('/:id', async(req, res) => {
+questionRouter.put('/:id', async (req, res) => {
   try {
-    const game_id = res.locals.gameId;
+    console.log(req.body);
+    // const game_id = req.session.gameId;
     const idQuestion = req.params.id;
-    const user_id = req.session.userId;
-    const timer = req.body.timer
+    // const user_id = req.session.userId;
+    const game_id = 1;
+    const user_id = 1;
+    const timer = req.body.timer;
     const anwer = req.body.answer;
-    const question = await Question.findOne({ where: {id: idQuestion}})
-    if(anwer === question.answer) {
+    const question = await Question.findOne({ where: { id: idQuestion } });
+    if (anwer === question.answer) {
       const gameQuestion = await GameQuestion.create({
         game_id: Number(game_id), 
         question_id: idQuestion,
         isRight: true,
-        time: Number(timer)
+        time: Number(timer),
       });
-      res.status(200)
-      res.json({anwer: question.answer, result: gameQuestion.isRight})
+      res.status(200);
+      res.json({ anwer: question.answer, result: gameQuestion.isRight });
     } else {
       const gameQuestion = await GameQuestion.create({
         game_id: Number(game_id), 
         question_id: idQuestion,
         isRight: false,
-        time: Number(timer)
+        time: Number(timer),
       });
-      res.status(200)
-      res.json({anwer: question.answer, result: gameQuestion.isRight})
+      res.status(200);
+      res.json({ answer: question.answer, result: gameQuestion.isRight });
     }
-  
+
     /// Запрашивает вопрос в бд
-  /// Сравнивает ответ
-  /// Записывает результат в GameQuestion
-  /// Отправляет Правельный ответ и результат True или False
+    /// Сравнивает ответ
+    /// Записывает результат в GameQuestion
+    /// Отправляет Правельный ответ и результат True или False
   } catch (error) {
     console.log(error);
-    res.status(418).end()
+    res.status(418).end();
   }
-
 });
-
 
 // });
 
