@@ -35,7 +35,7 @@ function GameBoard(props) {
         setTopics(newTopics);
         dispatch({ type: QUESTIONS_GET, payload: questions });
       });
-  }, [dispatch]);
+  }, []);
 
   const answeredQuestion = useCallback((score) => {
     setTotalScore((prev) => prev + score);
