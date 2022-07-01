@@ -72,7 +72,7 @@ function QuestionCard({ question, answeredQuestion }) {
               <>
                 <input
                   type="text"
-                  placeholder="Введите задачу"
+                  placeholder="Введите ответ"
                   style={{ width: 400 }}
                   id="input"
                   name="input"

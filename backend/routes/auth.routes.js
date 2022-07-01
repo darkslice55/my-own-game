@@ -58,6 +58,11 @@ authRouter.route('/login').post(async (req, res) => {
   }
 });
 
+authRouter.get('/user', async (req, res) => {
+  const user = await User.findByPk(req.session.userId);
+  res.send(user);
+});
+
 authRouter.get('/logout', (req, res) => {
   req.session.destroy();
   res.clearCookie('user_sid');
