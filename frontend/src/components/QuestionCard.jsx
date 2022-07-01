@@ -59,8 +59,8 @@ function QuestionCard({ question, answeredQuestion }) {
       {isModal && (
         <div className={style.modal}>
           <div className={style.modalDialog}>
-            <h2 className={style.modalHeader}>
-              Вопрос за {question.score} {timer}
+            <h2 className={style.modalHeader}>Вопрос за {question.score}
+            <span className={style.modalTimer}>{timer}</span>
             </h2>
             <p>{question.description}</p>
             {!isAnswered ? (
@@ -74,7 +74,7 @@ function QuestionCard({ question, answeredQuestion }) {
                   value={value}
                   onChange={(event) => setValue(event.target.value)}
                 />
-                <button onClick={handleClick}>Ответить</button>
+                <button className='btn' onClick={handleClick}>Ответить</button>
               </>
             ) : (
               <>

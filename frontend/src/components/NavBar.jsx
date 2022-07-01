@@ -5,7 +5,8 @@ function NavBar({user}) {
     return (
             <nav>
     <div className="nav-wrapper" style={{backgroundColor:'black'}}>
-      <Link to="/" className="logo" style={{fontSize:'30px'}}>My own Game</Link>
+      <Link to="/" className="logo" style={{fontSize:'30px'}}>
+        My own Game</Link>
       <ul id="nav-mobile" className="right hide-on-med-and-down">
       {user ?  (
       <>

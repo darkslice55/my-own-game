@@ -1,6 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
 
 .App {
   text-align: center;
+  font-family: 'Raleway', sans-serif;
 }
 
 .App-logo {
@@ -22,6 +24,7 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
+  font-family: 'Raleway', sans-serif;
   color: white;
 }
 
@@ -31,6 +34,7 @@
 
 h1{
   color: white;
+  font-family: 'Raleway' sans-serif;
 }
 
 .gameBoard {
@@ -62,17 +66,19 @@ h1{
   justify-content: space-between;
 } */
 
+
 .btn {
  -webkit-box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000, 5px -9px 0px -3px rgba(184,20,20,0) !important; 
  box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000, 5px -9px 0px -3px rgba(184,20,20,0) !important;
- background-color: #8e1100;
+ background-color: #8e1100 !important;
  border-radius: 10px;
 }
 .btn:hover, .btn-large:hover, .btn-small:hover {
-  background-color: #ea0010;
+  background-color: #ea0010 !important;
 }
 
 h4{
+  font-family: 'Raleway' sans-serif;
   color: white
 }
 
@@ -98,7 +104,7 @@ h4{
   margin-top: 80px;
   min-width: 300px;
   min-height: 60px;
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Raleway' sans-serif;
   font-size: 22px;
   text-transform: uppercase;
   letter-spacing: 2.3px;
@@ -114,6 +120,8 @@ h4{
   outline: none;
   position: relative;
   padding: 10px;
+  font-family: 'Raleway' sans-serif;
+
   }
 
 .buttonMain::before {
@@ -178,4 +186,17 @@ content: '';
 
 .wrapper button:not(:last-child) {
   margin-right: 20px;
+}
+li {
+  font-family: 'Raleway' sans-serif;
+
+}
+
+h2{
+  font-family: 'Raleway' sans-serif;
+}
+
+button {
+  font-family: 'Raleway' sans-serif;
+
 }
