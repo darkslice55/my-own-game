@@ -1,5 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
+
 .App {
   text-align: center;
+  font-family: 'Raleway', sans-serif;
 }
 
 .App-logo {
@@ -21,11 +24,63 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
+  font-family: 'Raleway', sans-serif;
   color: white;
 }
 
-.App-link {
+/* .App-link {
   color: #61dafb;
+} */
+
+h1 {
+  color: white;
+  font-family: 'Raleway' sans-serif;
+}
+
+.gameBoard {
+  border-style: border #fae8e8;
+  background-color: rgba(125, 25, 0, 0.532);
+  border-radius: 20px;
+}
+/* 
+.firstString {
+  display: flex;
+  align-items: flex-start;
+  border: 2px #fae8e8;
+  justify-content: space-between;
+}
+
+.secondString{
+  display: flex;
+  align-items: flex-start;
+  border: 2px #fae8e8;
+  justify-content: space-between;
+}
+
+.thirdString {
+  display: flex;
+  align-items: flex-start;
+  border: 2px #fae8e8;
+  justify-content: space-between;
+} */
+
+.btn {
+  -webkit-box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000,
+    5px -9px 0px -3px rgba(184, 20, 20, 0) !important;
+  box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000,
+    5px -9px 0px -3px rgba(184, 20, 20, 0) !important;
+  background-color: #8e1100 !important;
+  border-radius: 10px;
+}
+.btn:hover,
+.btn-large:hover,
+.btn-small:hover {
+  background-color: #ea0010 !important;
+}
+
+h4 {
+  font-family: 'Raleway' sans-serif;
+  color: white;
 }
 
 @keyframes App-logo-spin {
@@ -35,4 +90,114 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/* .container {
+  margin: 0 auto;
+  max-width: 2400px;
+  background-color: #282c34;
+  display: flex;
+  
+} */
+
+.buttonMain {
+  margin-top: 80px;
+  min-width: 300px;
+  min-height: 60px;
+  font-family: 'Raleway' sans-serif;
+  font-size: 22px;
+  text-transform: uppercase;
+  letter-spacing: 2.3px;
+  font-weight: 1000;
+  color: #fae8e8;
+  background: #8e1100;
+  background: linear-gradient(90deg, rgb(186, 0, 0) 0%, rgb(144, 0, 0) 100%);
+  border: none;
+  border-radius: 1000px;
+  box-shadow: 12px 12px 24px rgba(162, 7, 7, 0.64);
+  transition: all 0.3s ease-in-out 0s;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  padding: 10px;
+  font-family: 'Raleway' sans-serif;
+}
+
+.buttonMain::before {
+  content: '';
+  border-radius: 1000px;
+  min-width: calc(300px + 12px);
+  min-height: calc(60px + 12px);
+  border: 6px solid #960000;
+  box-shadow: 0 0 60px rgba(255, 0, 0, 0.64);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: all 0.3s ease-in-out 0s;
+}
+
+.buttonMain:hover,
+.button:focus {
+  color: #e80000;
+  transform: translateY(-6px);
+}
+
+.buttonMain:hover::before,
+button:focus::before {
+  opacity: 1;
+}
+
+.buttonMain::after {
+  content: '';
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  border: 6px solid #ff0303;
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: ring 1.5s infinite;
+}
+
+.buttonMain:hover::after,
+button:focus::after {
+  animation: none;
+  display: none;
+}
+
+@keyframes ring {
+  0% {
+    width: 30px;
+    height: 30px;
+    opacity: 1;
+  }
+  100% {
+    width: 400px;
+    height: 400px;
+    opacity: 0;
+  }
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-around;
+}
+
+.wrapper button:not(:last-child) {
+  margin-right: 20px;
+}
+li {
+  font-family: 'Raleway' sans-serif;
+}
+
+h2 {
+  font-family: 'Raleway' sans-serif;
+}
+
+button {
+  font-family: 'Raleway' sans-serif;
 }

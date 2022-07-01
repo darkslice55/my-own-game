@@ -5,21 +5,16 @@ const { User } = require('../db/models');
 
 authRouter.route('/register').post(
   [
-    check(
-      'login',
-      'Логин должен быть введен и состоять из латинских символов, цифр или символов ".", "_" или "-"',
-    )
-      .matches(/[a-zA-Z0-9._-]+/i)
+    check('login', 'Логин должен быть введен и состоять из латинских символов')
+      .matches(/[a-zA-Z]+/i)
       .isLength({
         min: 3,
       }),
-    check('email', 'Некорректный email')
-      .isEmail()
-      .matches(/[a-zA-Z0-9._%-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,4}/i),
     check('password', 'Пароль должен быть минимум 8 символов').isLength({
       min: 8,
     }),
   ],
+
   async (req, res) => {
     const { errors } = validationResult(req);
     console.log(errors);
@@ -28,9 +23,9 @@ authRouter.route('/register').post(
       res.json({ success: false, message });
       return;
     }
-    const { login, email, password } = req.body;
+    const { login, password } = req.body;
 
-    const existingUser = await User.findOne({ where: { email } });
+    const existingUser = await User.findOne({ where: { login } });
     // проверяем есть ли уже такой пользователь в БД
     if (existingUser) {
       res.json({ success: false, message: 'Пользователь с такой почтой уже есть' });
@@ -40,37 +35,43 @@ authRouter.route('/register').post(
     // создаём нового пользователя
     const user = await User.create({
       login,
-      email,
       // хэшируем пароль, чтобы не хранить в открытом виде в БД
       password: await bcrypt.hash(password, 10),
     });
+    console.log(first);
     // кладём id нового пользователя в хранилище сессии (сразу логиним пользователя)
     req.session.userId = user.id;
-    res.locals.user = user;
-    res.send({ success: true });
+    res.json({ id: user.id, login: user.login });
   },
 );
 
 authRouter.route('/login').post(async (req, res) => {
-  const { email, password } = req.body;
-  const existingUser = await User.findOne({ where: { email } });
+  const { login, password } = req.body;
+  const existingUser = await User.findOne({ where: { login } });
 
   // проверяем, что такой пользователь есть в БД и пароли совпадают
   if (existingUser && (await bcrypt.compare(password, existingUser.password))) {
     // кладём id нового пользователя в хранилище сессии (логиним пользователя)
     req.session.userId = existingUser.id;
-    res.locals.user = existingUser;
-    res.send({ success: true });
+    // res.locals.user = existingUser;
+    res.send({ id: existingUser.id, login: existingUser.login });
   } else {
     res.json({ success: false, message: 'Такого пользователя нет либо пароли не совпадают' });
   }
+});
+
+authRouter.get('/user', async (req, res) => {
+  const user = await User.findByPk(req.session.userId);
+  res.send(user);
 });
 
 authRouter.get('/logout', (req, res) => {
   req.session.destroy();
   res.clearCookie('user_sid');
   delete res.locals.user;
-  res.redirect('/');
+  delete res.locals.gameId;
+  // res.redirect('/');
+  res.send({ success: true });
 });
 
 module.exports = authRouter;

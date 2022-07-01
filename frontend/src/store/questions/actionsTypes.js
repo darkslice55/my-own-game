@@ -1,0 +1,2 @@
+export const QUESTIONS_ANSWER = 'QUESTIONS_ANSWER';
+export const QUESTIONS_GET = 'QUESTIONS_GET';
