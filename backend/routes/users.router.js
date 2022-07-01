@@ -4,6 +4,7 @@ const { Game } = require('../db/models'); //Подключаемся к базе
 
 //// Отправляет всю информацию по завершенным играм конктретного юзера
 usersRouter.get('/', async(req, res) => {
+  console.log(111111111111111)
      //const user = await User.findOne({ where: { id: req.params.id }, include: [Product.User], raw: true });
      //Запрос в базу данных
      try {
@@ -17,6 +18,7 @@ usersRouter.get('/', async(req, res) => {
        ],
      });
      res.status(200)
+     console.log('jjjjjjjjjjjjjjjjjj',allGamesUsers)
       res.json(allGamesUsers)
      } catch (error) {
       console.log(error);
