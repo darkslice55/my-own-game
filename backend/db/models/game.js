@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate({ User, GameQuestion }) {
-      Game.belongsTo(User, { foreignKey: 'user_id' });
+      Game.User = Game.belongsTo(User, { foreignKey: 'user_id' });
       Game.hasMany(GameQuestion, { foreignKey: 'game_id' });
     }
   }
@@ -31,6 +31,10 @@ module.exports = (sequelize, DataTypes) => {
       total_score: {
         allowNull: false,
         type: DataTypes.INTEGER,
+      },
+      isFinished: {
+        allowNull: false,
+        type: DataTypes.BOOLEAN
       },
       createdAt: {
         allowNull: false,

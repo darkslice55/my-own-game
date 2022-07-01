@@ -1,19 +1,18 @@
 const gamesRouter = require('express').Router();
 
-const { Game, GameQuestion, Question} = require('../db/models'); //Подключаемся к базе и получает юзеров
+const { Game, GameQuestion, Question, User} = require('../db/models'); //Подключаемся к базе и получает юзеров
 
 //// Создаем новую игру у пользоватетя
 //// И закидываем в Сесию id игры
 gamesRouter.post('/', async(req, res) => {
   try {
-    console.log('Я тут');
     const id = req.session.userId;
     const game = await Game.create({
-      user_id: id, //Нужно заменить на id юзера!!!!!!!!
+      user_id: id, 
       total_score: 0,
       isFinished: false,
     });
-    req.session.gameId = game.id;
+    res.locals.gameId = game.id;
     res.status(200)
     res.json(game)
   } catch (error) {
@@ -25,8 +24,8 @@ gamesRouter.post('/', async(req, res) => {
 
 gamesRouter.put('/', async(req, res) => {
   try {
-    const gameId = req.session.gameId;
-    console.log(gameId);
+    const gameId = res.locals.gameId;
+    // console.log(gameId);
     const game = await GameQuestion.findAll({ 
       raw: true,
       where: {game_id: gameId},
@@ -39,8 +38,9 @@ gamesRouter.put('/', async(req, res) => {
     const result = scoreTrue - scoreFalse;
     const findGame = await Game.findOne({ where: {id: gameId}});
     findGame.total_score = result;
+    findGame.isFinished = true;
     await findGame.save();
-
+    delete res.locals.gameId;
     res.status(200)
     res.json(findGame)
   } catch (error) {
@@ -52,12 +52,18 @@ gamesRouter.put('/', async(req, res) => {
     /// нужно сделать сложный поиск в GameQuestion для подсчета результата
     /// вставить результат в игру и поставить флаг завершено
 
-gamesRouter.put('/games/raitings', (req, res) => {
+gamesRouter.get('/raitings', async(req, res) => {
   try {
     const id = req.session.userId;
     console.log(req.body);
-    // const game = await Game.findAll(user_id(req.session.userId));
-
+    const game = await Game.findAll({ 
+      raw: true,
+      where: {isFinished: true},
+      include: [Game.User],
+      order: [
+        ['total_score', 'DESC'],
+      ],
+    });
     res.status(200)
     res.json(game)
   } catch (error) {
