@@ -84,3 +84,30 @@ code {
   background-color: #fff;
   color: rgb(131, 18, 10);
 }
+
+.right_result {
+  color: rgb(1, 150, 26);
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.wrong_result {
+  color: rgb(131, 18, 10);
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.right_answer {
+  font-size: 25px;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.statsBlock {
+  color: white;
+  text-align: left;
+}
+
+.statInfo {
+  font-size: 25px;
+}

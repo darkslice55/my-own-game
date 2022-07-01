@@ -79,7 +79,7 @@ function QuestionCard({ question, answeredQuestion }) {
                   name="input"
                   value={value}
                   onChange={(event) => setValue(event.target.value)}
-                  autocomplete="off"
+                  autoComplete="off"
                 />
                 <button className="btn" onClick={handleClick}>
                   Ответить
@@ -88,11 +88,11 @@ function QuestionCard({ question, answeredQuestion }) {
             ) : (
               <>
                 {rightAnswer.result ? (
-                  <p> Вы ответили верно!</p>
+                  <p className="right_result"> Вы ответили верно!</p>
                 ) : (
                   <>
-                    <p> Вы ответили неверно и глупо!</p>
-                    <p>Правильный ответ: {rightAnswer.answer}</p>
+                    <p className="wrong_result"> Вы ответили неверно и глупо!</p>
+                    <p className="right_answer">Правильный ответ: {rightAnswer.answer}</p>
                   </>
                 )}
                 <button className="btn" onClick={handleClickOnAnswer}>

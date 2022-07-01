@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import { QUESTIONS_GET } from '../store/questions/actionsTypes';
 import style from './GameBoard.module.css';
@@ -22,6 +23,7 @@ function getThemes(questions) {
 }
 
 function GameBoard(props) {
+  const navigate = useNavigate();
   const questions = useSelector((state) => state.questions.questions);
   const dispatch = useDispatch();
   const [topics, setTopics] = useState([]);
@@ -48,10 +50,10 @@ function GameBoard(props) {
     setTotalScore((prev) => prev + score);
   }, []);
 
-
   const gameOver = () => {
-    fetch("/games");
-   }
+    fetch('/games');
+    navigate('/');
+  };
 
   console.log(questions);
 
@@ -59,8 +61,13 @@ function GameBoard(props) {
     <div>
       {topics && (
         <>
-          <div className='game-header'>
-            <button type="submit" onClick={gameOver} className="btnEnd btn-primary style ={{'width:100px', hight:'100px', marginRight:50px}}">Завершить игру</button>
+          <div className="game-header">
+            <button
+              type="submit"
+              onClick={gameOver}
+              className="btnEnd btn-primary style ={{'width:100px', hight:'100px', marginRight:50px}}">
+              Завершить игру
+            </button>
             <h2 className={style.score}>Текущий счёт: {totalScore}</h2>
           </div>
           {topics.map((topic, id) => (
@@ -75,7 +82,6 @@ function GameBoard(props) {
               ))}
             </div>
           ))}
-
         </>
       )}
     </div>
