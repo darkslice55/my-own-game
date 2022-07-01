@@ -33,7 +33,7 @@ function App() {
           <Route path="/error" element={<Error />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/game/play" element={<GameBoard />} />
-          <Route path="/game/score" element={<Score />} />
+          <Route path="/score" element={<Score />} />
         </Routes>
       </div>
     </div>
