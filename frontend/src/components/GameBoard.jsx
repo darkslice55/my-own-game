@@ -38,13 +38,15 @@ function GameBoard(props) {
   //   const handleClick =
 
   return (
-    <div className={style.parent}>
+    <div>
       {topics &&
         topics.map((topic, id) => (
-          <div key={id}>
-            <h2>{topic.theme}</h2>
+          <div className={style.parent} key={id}>
+            <p className={style.theme}>{topic.theme}</p>
             {topic.questions.map((question) => (
-              <p key={question.id}>{question.score}</p>
+              <p key={question.id} className={style.question}>
+                {question.score}
+              </p>
             ))}
           </div>
         ))}
