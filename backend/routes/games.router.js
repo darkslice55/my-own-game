@@ -24,6 +24,7 @@ gamesRouter.post('/', async (req, res) => {
 gamesRouter.get('/', async (req, res) => {
   try {
     const gameId = res.locals.gameId;
+    console.log(gameId);
     const game = await GameQuestion.findAll({
       raw: true,
       where: { game_id: gameId },
