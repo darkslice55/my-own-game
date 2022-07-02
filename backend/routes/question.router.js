@@ -13,13 +13,12 @@ questionRouter.get('/', async (req, res) => {
     });
     if (!res.locals.gameId) {
       const game = await Game.create({
-        user_id: Number(res.locals.user.id),
+        user_id: Number(res.locals.userId),
         total_score: 0,
         isFinished: false,
       });
       res.locals.gameId = game.id;
     }
-
     const answeredQuestions = await GameQuestion.findAll({
       raw: true,
       where: {

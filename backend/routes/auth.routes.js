@@ -38,7 +38,7 @@ authRouter.route('/register').post(
       // хэшируем пароль, чтобы не хранить в открытом виде в БД
       password: await bcrypt.hash(password, 10),
     });
-    console.log(first);
+    // console.log(first);
     // кладём id нового пользователя в хранилище сессии (сразу логиним пользователя)
     req.session.userId = user.id;
     res.json({ id: user.id, login: user.login });
